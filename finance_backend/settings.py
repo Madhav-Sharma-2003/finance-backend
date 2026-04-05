@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'records',
     'dashboard',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'EXCEPTION_HANDLER': 'finance_backend.exceptions.custom_exception_handler',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 from datetime import timedelta
@@ -158,3 +160,9 @@ if database_url:
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Finance Dashboard API',
+    'DESCRIPTION': 'Backend API for Finance Dashboard with Role-Based Access Control',
+    'VERSION': '1.0.0',
+}
